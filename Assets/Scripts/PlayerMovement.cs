@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D rb;
     //Animator here
+    public Animator animator;
 
     public bool isSprinting;
 
@@ -27,12 +28,15 @@ public class PlayerMovement : MonoBehaviour
         //Gets the horizontal/vertical axis, which makes support for WASD and controller support easier i think?; 
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        animator.SetFloat("Speed", movement.sqrMagnitude);
 
         //animator movement speed set float
 
         //If the player is trying to move in any direction
         if(movement.x != 0 || movement.y !=0)
         {
+            animator.SetFloat("HorizontalAxis", movement.x);
+            animator.SetFloat("VerticalAxis", movement.y);
             //Animator set horizontal and vertical floats for animation
 
         }
@@ -40,11 +44,13 @@ public class PlayerMovement : MonoBehaviour
         {
             //set animator bool sprinting to true
             isSprinting = true;
-
+            animator.SetBool("isSprinting", true);
         }
         else
         {
             //set animator bool sprinting to false
+            animator.SetBool("isSprinting", false);
+
             isSprinting = false;
         }
 
