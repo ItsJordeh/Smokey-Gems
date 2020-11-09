@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 3f;
 
     public Rigidbody2D rb;
+    public PlayerAttack pAttack;
     //Animator here
     public Animator animator;
     public float dashSpeed;
@@ -16,6 +17,14 @@ public class PlayerMovement : MonoBehaviour
     public bool isSprinting;
 
     Vector2 movement;
+
+
+    private void Start()
+    {
+        pAttack = GetComponent<PlayerAttack>();
+    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -84,16 +93,13 @@ public class PlayerMovement : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (Vector2)((mousePos - transform.position));
         direction.Normalize();
-        if (isSprinting)
+        if (pAttack.isAttacking)
         {
-            
-            
-                
-                this.GetComponentInParent<Rigidbody2D>().position = this.GetComponentInParent<Rigidbody2D>().position + direction * dashSpeed;
-                timeStamp = Time.time + dashCooldown;
-
-
-            //moveSpeed = 5f;
+            moveSpeed = 1f;
+        }
+        else if (isSprinting)
+        {
+            moveSpeed = 5f;
         }
         else
         {
@@ -105,4 +111,11 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+
+    
+
+
+
+
+
 }

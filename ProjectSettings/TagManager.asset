@@ -41,6 +41,9 @@ TagManager:
   - name: Ground
     uniqueID: 2758316651
     locked: 0
+  - name: FX
+    uniqueID: 3370068269
+    locked: 0
   - name: Entities
     uniqueID: 1331394709
     locked: 0
