@@ -8,12 +8,23 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 3f;
 
     public Rigidbody2D rb;
+    public PlayerAttack pAttack;
     //Animator here
     public Animator animator;
-
+    public float dashSpeed;
+    public float dashCooldown;
+    public float timeStamp = 0;
     public bool isSprinting;
 
     Vector2 movement;
+
+
+    private void Start()
+    {
+        pAttack = GetComponent<PlayerAttack>();
+    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -43,8 +54,22 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))//Reads the shift key and runs if its being pressed, Keycode shift can be changed to a variable that we can use to allow button remapping easily
         {
             //set animator bool sprinting to true
-            isSprinting = true;
+            
+            
             animator.SetBool("isSprinting", true);
+            
+            if(timeStamp <= Time.time)
+            {
+                
+                isSprinting = true;
+            }
+            else
+            {
+                isSprinting = false;
+            }
+
+            
+            
         }
         else
         {
@@ -59,12 +84,20 @@ public class PlayerMovement : MonoBehaviour
 
         
 
-
+        
 }
     //will run actual movement of the player NOTE: runs every frame 
+    
     private void FixedUpdate()
     {
-        if (isSprinting)
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (Vector2)((mousePos - transform.position));
+        direction.Normalize();
+        if (pAttack.isAttacking)
+        {
+            moveSpeed = 1f;
+        }
+        else if (isSprinting)
         {
             moveSpeed = 5f;
         }
@@ -78,4 +111,11 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+
+    
+
+
+
+
+
 }
