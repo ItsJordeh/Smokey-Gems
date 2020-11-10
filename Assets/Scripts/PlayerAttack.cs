@@ -28,6 +28,11 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+
+        if (PauseMenu.GameIsPaused)
+            return;
+
+
         Vector3 atkCenter = (this.gameObject.transform.position);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (Vector2)((mousePos - atkCenter));
