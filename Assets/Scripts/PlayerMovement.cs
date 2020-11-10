@@ -9,11 +9,18 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody2D rb;
     public PlayerAttack pAttack;
+    public PlayerStatus pStatus;
     //Animator here
     public Animator animator;
     public float dashSpeed;
     public float dashCooldown;
-    public float timeStamp = 0;
+
+    public float staminaReductionRate = 0.2f;
+    public float staminaIncreaseRate = 0.2f;
+
+
+    public float timeStampDecrease = 0;
+    public float timeStampIncrease = 0;
     public bool isSprinting;
 
     Vector2 movement;
@@ -22,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         pAttack = GetComponent<PlayerAttack>();
+        pStatus = GetComponent<PlayerStatus>();
     }
 
 
@@ -31,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         //will not run if time is paused AKA pause menu
-        if (Time.timeScale == 0)
+        if (PauseMenu.GameIsPaused)
             return;
 
 
@@ -53,22 +61,24 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftShift))//Reads the shift key and runs if its being pressed, Keycode shift can be changed to a variable that we can use to allow button remapping easily
         {
-            //set animator bool sprinting to true
-            
-            
-            animator.SetBool("isSprinting", true);
-            
-            if(timeStamp <= Time.time)
-            {
-                
-                isSprinting = true;
-            }
-            else
-            {
-                isSprinting = false;
-            }
 
-            
+            //if the player is not exausted, let player sprint
+            if (!pStatus.isExhausted)
+            {
+                animator.SetBool("isSprinting", true);
+
+                if (timeStampDecrease <= Time.time)
+                {
+                    timeStampDecrease = Time.time + staminaReductionRate;
+                    pStatus.diminishStamina(1);//reduce stamina by 1 every <staminaReductionRate> seconds
+                    isSprinting = true;
+                }
+                else
+                {
+                    isSprinting = false;
+                }
+
+            }
             
         }
         else
@@ -76,15 +86,15 @@ public class PlayerMovement : MonoBehaviour
             //set animator bool sprinting to false
             animator.SetBool("isSprinting", false);
 
+            if (!isSprinting)
+            {
+                timeStampIncrease = Time.time + staminaIncreaseRate;
+                pStatus.regenerateStamina(1);
+            }
+
             isSprinting = false;
         }
-
-
-
-
-        
-
-        
+      
 }
     //will run actual movement of the player NOTE: runs every frame 
     
@@ -93,11 +103,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (Vector2)((mousePos - transform.position));
         direction.Normalize();
-        if (pAttack.isAttacking)
+        if (pAttack.isAttacking || pStatus.isExhausted)
         {
             moveSpeed = 1f;
         }
-        else if (isSprinting)
+        else if (isSprinting && !pStatus.isExhausted)
         {
             moveSpeed = 5f;
         }
