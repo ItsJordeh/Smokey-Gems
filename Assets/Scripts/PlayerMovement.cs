@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float dashSpeed;
     public float dashCooldown;
 
-    public float staminaReductionRate = 0.2f;
-    public float staminaIncreaseRate = 0.2f;
+    public float staminaReductionRate;
+    public float staminaIncreaseRate;
 
 
     public float timeStampDecrease = 0;
@@ -66,17 +66,14 @@ public class PlayerMovement : MonoBehaviour
             if (!pStatus.isExhausted)
             {
                 animator.SetBool("isSprinting", true);
-
+                isSprinting = true;
                 if (timeStampDecrease <= Time.time)
                 {
                     timeStampDecrease = Time.time + staminaReductionRate;
                     pStatus.diminishStamina(1);//reduce stamina by 1 every <staminaReductionRate> seconds
-                    isSprinting = true;
+                    
                 }
-                else
-                {
-                    isSprinting = false;
-                }
+                
 
             }
             
@@ -86,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             //set animator bool sprinting to false
             animator.SetBool("isSprinting", false);
 
-            if (!isSprinting)
+            if (timeStampIncrease <= Time.time)
             {
                 timeStampIncrease = Time.time + staminaIncreaseRate;
                 pStatus.regenerateStamina(1);
@@ -107,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveSpeed = 1f;
         }
-        else if (isSprinting && !pStatus.isExhausted)
+        else if (isSprinting)
         {
             moveSpeed = 5f;
         }

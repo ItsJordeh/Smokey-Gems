@@ -66,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
 
                 for (int i = 0; i < damage.Length; i++)
                 {
-                    Destroy(damage[i].gameObject);
+                    //Destroy(damage[i].gameObject);
                 }
             }
             else
