@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask enemies;
     public bool isAttacking;
 
-    public float swingCooldown = 0.08f;
+    public float swingCooldown = 0.1f;
     private float atkStamp = 0;
 
     private void Start()
@@ -50,14 +50,12 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-            if (Input.GetMouseButtonDown(0)) 
-            {
+        if (Input.GetMouseButtonDown(0))
+        {
             if (!isAttacking && atkStamp < Time.time)
             {
                 isAttacking = true;
                 atkStamp = Time.time + swingCooldown;
-
-                Debug.Log(this.GetComponentInChildren<Rigidbody2D>());
                 attackLocation.transform.position = (Vector2)this.transform.position + direction * attackRange;
                 attackLocation.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 attackAnimator.SetBool("isAttacking", true);
@@ -77,9 +75,9 @@ public class PlayerAttack : MonoBehaviour
                 attackAnimator.SetBool("isAttacking", false);
                 attackAnimator.SetInteger("AttackType", 0);
             }
-            }
-            
-        
+        }
+
+
     }
 
     private void OnDrawGizmosSelected()
@@ -91,13 +89,13 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-        
 
 
 
 
-                
-                
 
 
-            
+
+
+
+
