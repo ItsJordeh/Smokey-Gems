@@ -34,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
 
 
         Vector3 atkCenter = (this.gameObject.transform.position);
+        //atkCenter.y = atkCenter.y +5;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (Vector2)((mousePos - atkCenter));
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
@@ -56,10 +57,15 @@ public class PlayerAttack : MonoBehaviour
             {
                 isAttacking = true;
                 atkStamp = Time.time + swingCooldown;
-                attackLocation.transform.position = (Vector2)this.transform.position + direction * attackRange;
+                attackLocation.transform.position = (Vector2)(this.transform.position + new Vector3(0,0.2f)) + direction * attackRange;
+                
+                
                 attackLocation.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                
                 attackAnimator.SetBool("isAttacking", true);
                 attackAnimator.SetInteger("AttackType", 1);
+                FindObjectOfType<AudioManager>().Play("whoosh1");
+                Debug.Log("should play");
                 Collider2D[] damage = Physics2D.OverlapCircleAll(attackLocation.position, attackRadius, enemies);
 
 

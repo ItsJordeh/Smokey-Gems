@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             //set animator bool sprinting to false
             animator.SetBool("isSprinting", false);
 
-            if (timeStampIncrease <= Time.time)
+            if (timeStampIncrease  <= Time.time)
             {
                 timeStampIncrease = Time.time + staminaIncreaseRate;
                 pStatus.regenerateStamina(1);
