@@ -64,8 +64,8 @@ public class PlayerAttack : MonoBehaviour
                 
                 attackAnimator.SetBool("isAttacking", true);
                 attackAnimator.SetInteger("AttackType", 1);
-                FindObjectOfType<AudioManager>().Play("whoosh1");
-                Debug.Log("should play");
+                AudioManager.instance.Play("whoosh1");
+        
                 Collider2D[] damage = Physics2D.OverlapCircleAll(attackLocation.position, attackRadius, enemies);
 
 

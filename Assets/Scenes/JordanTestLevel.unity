@@ -2946,12 +2946,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df62bad48b07d44fbc95481363a0482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 823702ce62a6a9545aaba2535ccf2a54, type: 2}
+  audioMixer: {fileID: 24100000, guid: 27247a175ae34294ca41ad526af4a9b8, type: 2}
   sounds:
   - name: whoosh1
     clip: {fileID: 8300000, guid: f500e89cbf6803246b07bdab73da7150, type: 3}
-    volume: 1
-    pitch: 0
+    volume: 0.503
+    pitch: 0.99
     loop: 0
     source: {fileID: 0}
 --- !u!4 &716019927
@@ -4004,7 +4004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f79d1347e960e84ca8f09bfb43ff367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 7.5
   rb: {fileID: 1838852641}
   pAttack: {fileID: 1838852638}
   pStatus: {fileID: 1838852639}

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -30,7 +30,9 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         foreach(Sound s in sounds)
         {
+
             s.source = gameObject.AddComponent<AudioSource>();
+            
             s.source.clip = s.clip;
 
             s.source.volume = s.volume;
@@ -65,7 +67,7 @@ public class AudioManager : MonoBehaviour
         
         if (s != null)
         {
-            if(!s.source.isPlaying)
+            
                 s.source.Play();
 
            
