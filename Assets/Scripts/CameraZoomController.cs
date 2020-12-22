@@ -22,13 +22,13 @@ public class CameraZoomController : MonoBehaviour
         scrollData = Input.GetAxis("Mouse ScrollWheel");
 
         targetZoom = targetZoom - scrollData * zoomFactor;
-        if(targetZoom > 9)
+        if(targetZoom > 4)
         {
-            targetZoom = 9;
+            targetZoom = 4;
         }
-        else if(targetZoom < 3)
+        else if(targetZoom < 2)
         {
-            targetZoom = 3;
+            targetZoom = 2;
 
         }
 

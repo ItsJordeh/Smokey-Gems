@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float moveSpeed = 3f;
+    public float moveSpeed = 1.5f;
 
     public Rigidbody2D rb;
     public PlayerAttack pAttack;
@@ -102,15 +102,15 @@ public class PlayerMovement : MonoBehaviour
         direction.Normalize();
         if (pAttack.isAttacking || pStatus.isExhausted)
         {
-            moveSpeed = 1f;
+            moveSpeed = 0.2f;
         }
         else if (isSprinting)
         {
-            moveSpeed = 5f;
+            moveSpeed = 2.5f;
         }
         else
         {
-            moveSpeed = 3f;
+            moveSpeed = 1.5f;
         }
         //Move the player to their position plus their movement speed based on delta time
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);

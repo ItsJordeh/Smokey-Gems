@@ -33,12 +33,7 @@ public class PlayerAttack : MonoBehaviour
             return;
 
 
-        Vector3 atkCenter = (this.gameObject.transform.position);
-        //atkCenter.y = atkCenter.y +5;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = (Vector2)((mousePos - atkCenter));
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-        direction.Normalize();
+
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -47,25 +42,27 @@ public class PlayerAttack : MonoBehaviour
             attackAnimator.SetInteger("AttackType", 0);
         }
 
-
-
-
-
         if (Input.GetMouseButtonDown(0))
         {
+            Vector3 atkCenter = (this.gameObject.transform.position);
+            //atkCenter.y = atkCenter.y +5;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = (Vector2)((mousePos - atkCenter));
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            direction.Normalize();
             if (!isAttacking && atkStamp < Time.time)
             {
                 isAttacking = true;
                 atkStamp = Time.time + swingCooldown;
-                attackLocation.transform.position = (Vector2)(this.transform.position + new Vector3(0,0.2f)) + direction * attackRange;
-                
-                
+                attackLocation.transform.position = (Vector2)(this.transform.position + new Vector3(0, 0.2f)) + direction * attackRange;
+
+
                 attackLocation.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                
+
                 attackAnimator.SetBool("isAttacking", true);
                 attackAnimator.SetInteger("AttackType", 1);
                 AudioManager.instance.Play("whoosh1");
-        
+
                 Collider2D[] damage = Physics2D.OverlapCircleAll(attackLocation.position, attackRadius, enemies);
 
 
@@ -75,13 +72,19 @@ public class PlayerAttack : MonoBehaviour
                     //Destroy(damage[i].gameObject);
                 }
             }
-            else
+
+        }
+        else
+        {
+            if (atkStamp < Time.time)
             {
                 isAttacking = false;
                 attackAnimator.SetBool("isAttacking", false);
                 attackAnimator.SetInteger("AttackType", 0);
             }
+
         }
+
 
 
     }
