@@ -1,0 +1,40 @@
+© 2016 Loai Qubti, ALL RIGHTS RESERVED.
+Status Bars , Created by Loai Qubti - founder and ceo of "Low Eyed Studios".
+Support us on twitter @LowEyedStudios , 
+and check out our upcoming fps survival game "Territory" @game_territory -
+this is the system we used to create status bars for our player in the game.
+
+"HOW TO:(Simple)"
+-----------------
+1.Click on "Add Manager" from the tab "Status Bars" above the screen! (Status Bars/Add Manager)
+2.Add in your variables to create your own bar.
+3.Press "Create Bar" ...yep as simple as that!
+
+** If you want to play with the variables of you bar , you can click on the bar and change the values.
+
+"Advanced Bar Manager - FEATURES" :
+-----------------------------------
+	(You can find all of this in any bar you created).
+	- Names :
+		- You can change the name whenever you want and the gameObject will change its name immediately.
+		- Its preferred to not leave the name empty.
+	- Positioning :
+		1.You can change the position by changing the "Position" variable to UpRight/UpLeft/DownRight/DownLeft.
+		2.Or you can enable the "Use Advanced Position" and type your own position in "Advanced Position" underneath.
+	- The Looks :
+		1.You can set the look just a basic color by changing "Color".
+		2.You can enable "Use Textures" and assign your own designed textures to show : 
+			- "Full Texture" will show in the area where there is still value , and the bar is not empty.
+			- "Background Texture" is the background when the bar starts losing value.
+	- The Value :
+		- You can attach a float variable from another script to this (such as health) to show it on the bar.
+	- The Size :
+		- The default size is set to (0.5f,0.15f)
+		- You can change it any way you want.
+-----------------------------------------------------------------------------------------------------------------------------
+THIS IS BASICALLY ALL YOU NEED TO KNOW ABOUT "STATUS BARS".
+THANKS A LOT FOR PURCHASING THIS EXTENSION AND SUPPORTING OUR GAMES.
+IF YOU HAVE ANY QUESTIONS FEEL FREE TO E-MAIL US AT : LOW.EYED.STUDIOS@GMAIL.COM
+
+BEST REGARDS,
+- LOAI QUBTI , FOUNDER & CEO OF "Low Eyed Studios" 

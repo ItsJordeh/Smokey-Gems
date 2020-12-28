@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,18 +18,18 @@ public class PlayerStatus : MonoBehaviour
     {
         currentHealth -= damage;
 
-        if(currentHealth < 0)
+        if (currentHealth < 0)
         {
             //You died loser
         }
-        
+
 
     }
 
     public void inflictHealing(int healing)
     {
         currentHealth += healing;
-        if(currentHealth > maxHealth)
+        if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
         }
@@ -41,16 +41,15 @@ public class PlayerStatus : MonoBehaviour
         currentStamina += stamina;
 
         //if the current stamina after regen is above exhaustion threshhold, player is no longer exhausted
-        if(currentStamina > exhaustion)
+        if (currentStamina > exhaustion)
         {
             isExhausted = false;
         }
         //if the current stamina after regen is above the maximum stamina, reset the stamina to max 
-        if(currentStamina > maxStamina)
+        if (currentStamina > maxStamina)
         {
             currentStamina = maxStamina;
         }
-
     }
     public void diminishStamina(int stamina)
     {
@@ -62,6 +61,7 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    
 
 
 
